@@ -2,6 +2,28 @@
 
 This is Prompt FC's workspace for the Phase 1 ball possession challenge. The organizer's starter code, notebooks, evaluation tools, and public examples are included below and in the accompanying files. They came from [the official repository at f8f2629](https://github.com/metrica-sports/more-than-a-hack-2027/tree/f8f2629ff1e0985f81d7e59d8413678514ee1530) and retain the original [license](LICENSE).
 
+## Regenerate Prompt FC's submission
+
+Use **CPython 3.14.5** (the tested version) and the pinned candidate environment.
+From the repository root in PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-prompt-fc.txt
+# Put the bundle's tactical/ folder in data/, or set its parent directory:
+# $env:MTAH_DATA_DIR = "D:\match-bundle"
+.\.venv\Scripts\python.exe -m prompt_fc
+.\.venv\Scripts\python.exe evaluation/validate_submission.py "evaluation/results/Prompt FC.csv"
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+The CLI uses tactical ATD and automatic Smart Tagging; it needs no video,
+notebook packages, training data, or ground truth. `--data-dir` overrides the
+bundle location. The default CSV and detailed diagnostics are ignored by Git.
+See [Prompt FC.md](<Prompt FC.md>) for the rules, exact reproduction and
+determinism checks, measured diagnostics, public scoring results, and limitations.
+The organizer's `starter/baseline.py` remains independently runnable.
+
 ## Get started
 
 1. Install the evaluation dependencies with `python -m pip install -r requirements.txt`. Use `requirements-starter.txt` for the optional notebooks and tracking loader.
